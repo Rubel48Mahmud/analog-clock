@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Analog Clock</title>
+ 
+
+
+<style type="text/css">
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+}
+body{
+background:#68a4ff
+
+}
+
+.header{
+width:100%;
+padding:10px;
+text-align:center
+
+}
+
+
+.clock{
+margin:40px auto;
+width:220px;
+height:220px;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#fff url('https://i.ibb.co/xLCP3LQ/clock.png');
+background-size:cover;
+border-radius:50%;
+border:12px solid #fff;
+box-shadow:inset 0 0 10px rgba(0,0,0,.1),
+      		0 10px 10px rgba(0,0,0,.2),
+      		0 0 0 4px rgba(255,255,255,1);
+
+}
+
+.mystyle1{
+background:#000 url('https://i.ibb.co/xLCP3LQ/clock.png');
+background-size:cover;
+transition:1s;
+border:12px solid rgb(91,232,206);
+}
+
+
+
+
+.clock::before{
+content:'';
+position:absolute;
+width:25px;
+height:25px;
+background:#51eeee;
+border:2px solod #fff;
+z-index:100000;
+border-radius:50%;
+animation:changebg 3s linear infinite;
+box-shadow:0 0 25px #51eeee,0 0 50px #51eeee,0 0 70px #51eeee
+
+}
+
+@keyframes changebg{
+
+to{
+
+filter:hue-rotate(360deg)
+}
+
+}
+
+
+
+
+.hour, .min, .sec{
+position:absolute;
+}
+
+.hour, .hr{
+width:160px;
+height:128px
+}
+.min, .mn{
+width:190px;
+height:145px
+}
+
+.sec, .sc{
+width:230px;
+height:160px
+}
+.hr, .mn, .sc{
+display:flex;
+justify-content:center;
+position:absolute;
+border-radius:50%;
+
+}
+.hr::before{
+content:'';
+position:absolute;
+width:8px;
+height:52px;
+background:#848484;
+z-index:10;
+border-radius:6px 6px 0 0;
+}
+
+.mn::before{
+content:'';
+position:absolute;
+width:5px;
+height:65px;
+background:#848484;
+z-index:11;
+background:pink;
+border-radius:6px 6px 0 0;
+
+
+
+}
+
+.sc::before{
+content:'';
+position:absolute;
+width:2px;
+height:100px;
+background:red;
+z-index:12;
+border-radius:6px 6px 0 0;
+
+
+}
+
+.radioDiv{
+width:100%;
+padding:10px;
+text-align:center;
+
+
+}
+.radioDiv input{
+margin:0px 10px
+
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+
+  <h3>Analog Clock</h3>
+  <h6>Using HTML,CSS,Javascript Language</h6>
+
+</div>
+<div class="clock" id="clock">
+  <div class="hour">
+    <div class="hr" id="hr"></div>
+  </div>
+  
+  <div class="min">
+  <div class="mn" id="mn"></div>
+  </div>
+  
+  <div class="sec">
+  <div class="sc" id="sc"></div>
+  </div>
+</div>
+
+<div class="radioDiv">
+<input type="radio" name="radio" oninput="white()">White
+<input type="radio" name="radio" oninput="black()">Black
+
+</div>
+</div>
+
+<script type="text/javascript">
+const deg = 6;
+const hr = document.getElementById("hr");
+const mn = document.getElementById("mn");
+const sc = document.getElementById("sc");
+
+setInterval(() => {
+let day = new Date();
+let hh = day.getHours()*30;
+let mm = day.getMinutes()*deg;
+let ss = day.getSeconds()*deg;
+
+hr.style.transform=`rotateZ(${hh+(mm/12)}deg)`;
+mn.style.transform=`rotateZ(${mm}deg)`;
+sc.style.transform=`rotateZ(${ss}deg)`;
+
+
+
+})
+
+function black(){
+var clock = document.getElementById("clock");
+var body = document.querySelector("body");
+clock.classList.add("mystyle1");
+body.style.background="rgb(194,236,237)";
+body.style.transition="1s";
+}
+
+function white(){
+var clock = document.getElementById("clock");
+var body = document.querySelector("body");
+clock.classList.remove("mystyle1");
+clock.style.transition="1s";
+}
+
+
+
+</script>
+
+
+</body>
+</html>
